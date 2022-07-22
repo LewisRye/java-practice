@@ -7,7 +7,7 @@ public class Login
 {
     public static void main(String[] args)
     {
-        System.out.println(java.lang.System.getProperty("java.library.path")); // only required to see path of JDK
+        // System.out.println(java.lang.System.getProperty("java.library.path")); // only required to see path of JDK
         try
                 (
                         Connection conn = DriverManager.getConnection("jdbc:jtds:sqlserver://LEWISLAPTOP:49672/InventoryDatabase;instance=SQLEXPRESS");
@@ -35,18 +35,21 @@ public class Login
                 result = resultset.getInt("");
             }
 
-            if (result == 0)
+
+            switch(result)
             {
-                System.out.println("Details are incorrect.");
-            }
-            else
-            {
-                System.out.println(String.format("Welcome %s!", username));
+                case 0:
+                    System.out.println("Details are incorrect.");
+                    break;
+                case 1:
+                    System.out.println(String.format("Welcome %s!", username));
+                    break;
             }
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
+            System.out.println("Unable to login due to an SQL error.");
         }
     }
 }
