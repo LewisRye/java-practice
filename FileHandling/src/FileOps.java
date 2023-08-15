@@ -23,7 +23,7 @@ public class FileOps {
 
     /**
      * Overwrites a txt file with message param
-     * @param message
+     * @param message the message to be written in the file
      */
     protected void editFile(String message) {
         try {
